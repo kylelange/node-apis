@@ -9,6 +9,10 @@
 
 ## Learnings
 
+* there are examples here of ECMA 5 functions and ECMA arrow functions.
+
+* Array.prototype.map() will spit out exactly the number of items you put in, with filtered info from each item.
+
 * 
 
 
