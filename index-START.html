@@ -40,7 +40,7 @@
          return false;
        }
     });
-    console.table(fifTeen);
+    //console.table(fifTeen);
 
     //same thing as an arrow function
     const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year <= 1599));
@@ -54,7 +54,7 @@
     const fullNs  = inventors.map(function(inventor) {
       return inventor.first + "" + inventor.last;
     })
-    console.log(fullNs);
+    //console.log(fullNs);
 
     //New Way
     const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
@@ -71,10 +71,13 @@
         return -1;
       }
     })
-    console.table(age);
+    //console.table(age);
+
+    const age6 = inventors.sort((aPerson, bPerson) => aPerson.year > bPerson.year ? 1 : -1);
+
+    console.table(age6)
 
     //New way
-
 
 
     // Array.prototype.reduce()
