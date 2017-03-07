@@ -56,11 +56,38 @@
     // Find is like filter, but instead returns just the one you are looking for
     // find the comment with the ID of 823423
 
-    const comment = comments.find()
+    //ES5
+    // const comment = comments.find(comment => {
+    //   if (comment.id === 823423) {
+    //     return true;
+    //   }
+    // });
 
-    // Array.prototype.findIndex()
+    //ES6
+    const comment = comments.find(comment => comment.id === 823423);
+    console.log(comment);
+
+    // Array.prototype.findIndex() often used to delete items you can't find in an array w/out knowing its position. Output is the array order number.
     // Find the comment with this ID
     // delete the comment with the ID of 823423
+
+    const index = comments.findIndex(comment => comment.id === 823423);
+    console.table(comments);
+    console.log({index});
+
+    //to delete
+
+      //comments.splice(index, 1);
+
+    //OR w/spread opperator!
+
+    const newComments = [
+      ...comments.slice(0, index),
+      ...comments.slice(index + 1)
+    ];
+    console.table(newComments);
+
+
 
   </script>
 </body>
