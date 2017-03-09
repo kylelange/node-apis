@@ -22,6 +22,9 @@ ctx.strokeStyle = '#ff9159';
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
 ctx.lineWidth = 15;
+//check out more @ https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation
+ctx.globalCompositeOperation = 'luminosity';
+
 
 //event handler flag for click event to draw or not
 let isDrawing = false;
@@ -51,7 +54,7 @@ function draw(e) {
   if (hue >= 360) {
     hue = 0;
   }
-  
+
   if (ctx.lineWidth >= 60 || ctx.lineWidth <= 5) {
     direction = !direction;
   }
