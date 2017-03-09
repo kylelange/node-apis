@@ -31,7 +31,6 @@ For questions or comments, please __email  [Kyle here.](baronsintrees@gmail.com)
 ## Technologies Used
 
 * HTML5
-* CSS3 with Bootstrap 3
 * JavaScript
 
 ### License
