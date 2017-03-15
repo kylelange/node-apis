@@ -9,7 +9,7 @@
   <p onClick="makeGreen()">×BREAK×DOWN×</p>
 
   <script>
-    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'Hugo', age: 8 }];
 
     function makeGreen() {
       const p = document.querySelector('p');
@@ -41,11 +41,17 @@
     const p = document.querySelector('p');
     console.assert(p.classList.contains('bread'), 'Your assertion is incorrect about p.');
 
-    // clearing
+    // clearing your console
+    //console.clear();
 
-    // Viewing DOM Elements
+    // Viewing DOM Elements gives you an object to inspect about the element - see methods used on the prototype dropdown.
+    console.dir(p);
 
     // Grouping together
+
+    dogs.forEach(dog => {
+      console.log(`This is ${dog.name}, here. I am ${dog.age}.`);
+    });
 
     // counting
 
