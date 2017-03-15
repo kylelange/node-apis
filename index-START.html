@@ -48,14 +48,27 @@
     console.dir(p);
 
     // Grouping together
+    //must use the same(name) for console.group or .groupCollapsed
 
     dogs.forEach(dog => {
-      console.log(`This is ${dog.name}, here. I am ${dog.age}.`);
+      console.group(`${dog.name}`);
+        console.log(`This is ${dog.name}, here. I am ${dog.age}.`);
+        console.log(`That is ${dog.age * 7} in dog years.`);
+      console.groupEnd(`${dog.name}`);
     });
 
-    // counting
+    // counting - use for a string, number, object, or DOM node.
+    console.count('dog');
+    console.count('dog');
 
-    // timing
+    // timing - super cool!
+    console.time('fetching data');
+    fetch('https://api.github.com/users/kylelange')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data');
+        console.log(data);
+      });
 
   </script>
 </body>
