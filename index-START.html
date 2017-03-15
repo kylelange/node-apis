@@ -26,15 +26,20 @@
     console.log(`Hello, I am a ${'words'} string.`);
 
     // Styled
-    console.log('%c You can change my size', 'font-size: 20px;');
+    console.log('%c You can change my size', 'font-size: 20px; background: blanchedalmond; text-shadow: 2px 2px 0 green');
 
-    // warning!
-    console.warn('This will give you the warning flag!')
-    // Error :|
+    // warning!  good for tracing where the code is going.
+    console.warn('This will give you the warning flag!');
 
-    // Info
+    // Error :| good for tracing where the code is going.
+    console.error('This will give you the red flag!');
 
-    // Testing
+    // Info symbol
+    console.info('Reading poetry will change change your life for the better!');
+
+    // Testing - tests that prove false will throw an error to the console (if true, NOTHING will happen)
+    const p = document.querySelector('p');
+    console.assert(p.classList.contains('bread'), 'Your assertion is incorrect about p.');
 
     // clearing
 
