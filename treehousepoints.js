@@ -34,6 +34,7 @@ let getProfile = (userName) => {
              });
 
   });
+  request.on('error', error => console.error(`Problem with request: ${error.message}`));
 }
 
 //notice how Node.js gives my info FIRST as I have less info than Andrew Chalkey!- nonblocking in action.
