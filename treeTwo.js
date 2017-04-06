@@ -23,7 +23,15 @@ const request = https.get(`https://teamtreehouse.com/${username}.json`, response
              });
 }
 
-getProfile('kylelange');
+const users = ['kylelange','chalkers'];
+
+users.forEach(getProfile);
+
+//long version:
+// users.forEach( username => {
+//   getProfile(username);
+// });
+
 // Steps
 //   1. require 'https'
 //   2. write a printMessage function with parameters you want in your string output.
