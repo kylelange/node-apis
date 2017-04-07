@@ -1,9 +1,12 @@
+//for get request
 const https = require('https');
+//for status code to put in error messages
+const http = require('http');
 //const username = 'kylelange';
 
 //Print error messages
 function printError(error) {
-  console.error(`User name not found: ${error.message}`);
+  console.error(error.message);
 };
 
 function printMessage(username, badgeCount, points) {
@@ -14,21 +17,26 @@ function printMessage(username, badgeCount, points) {
 function getProfile(username) {
 try {
   const request = https.get(`https://teamtreehouse.com/${username}.json`, response  => {
-                let body = '';
+                if(response.statusCode === 200) {
+                  let body = '';
+                  console.log(response.statusCode);
+                  response.on('data', data => {
+                    body += data.toString();
+                  });
 
-                response.on('data', data => {
-                  body += data.toString();
-                });
-
-                response.on('end', ()  => {
-                  try {
-                    const profile = JSON.parse(body);
-                    printMessage(username, profile.badges.length, profile.points.JavaScript);
-                  } catch (error) {
-                    printError(error);
-                  }
-                });
-
+                  response.on('end', ()  => {
+                    try {
+                      const profile = JSON.parse(body);
+                      printMessage(username, profile.badges.length, profile.points.JavaScript);
+                    } catch (error) {
+                      printError(error);
+                    }
+                  });
+                } else {
+                  const message = `There was an error getting the profile for ${username} (${http.STATUS_CODES[response.statusCode]})`;
+                  const statusCodeError = new Error(message);
+                  printError(statusCodeError);
+                }
              });
 
             request.on('error', /*error => console.error(`Problem with request: ${error.message}`*/ printError);
@@ -64,7 +72,16 @@ users.forEach(getProfile);
 //10. use process.argv to allow you to pass usernames in through the console= console.log(process.argv)
 //11. replace your user array with process.argv= const users = process.argv.slice(2); (2 because the first to array points in process are node files that you wont need.)
 /////ERRORS
+///Error STATUS CODES
+/*
+200 - ok
+500 - internal server error
+301 - moved perminantly
+404 - file not found
+*/
+
 //1. request.on('error', error => { console.error(put a message HERE!);});
 //2. enclose the const request object in a try {} catch (error) {console.error(`backtick interp+ ${console.message}`)}
 //3. enclose the response.on('end') in a try {} catch (error) {console.error(`backtick interp+ ${console.message}`)}
 //4. place a printError function at the top of the javascript and replace all the error.messages with printError();
+//5. Handle all status codes that are NOT 200.  (above in if else statement)
