@@ -7,8 +7,8 @@ function printMessage(username, badgeCount, points) {
 }
 
 function getProfile(username) {
-
-const request = https.get(`https://teamtreehouse.com/${username}.json`, response  => {
+try {
+  const request = https.get(`https://teamtreehouse.com/${username}.json`, response  => {
                 let body = '';
 
                 response.on('data', data => {
@@ -21,6 +21,10 @@ const request = https.get(`https://teamtreehouse.com/${username}.json`, response
                 });
 
              });
+    request.on('error', error => console.error(`Problem with request: ${error.message}`));
+  } catch (error) {
+    console.error(error.message);
+  }
 }
 
 //console.log(process.argv);
