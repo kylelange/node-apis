@@ -1,6 +1,11 @@
 const https = require('https');
 //const username = 'kylelange';
 
+//Print error messages
+function printError(error) {
+  console.error(`User name not found: ${error.message}`);
+};
+
 function printMessage(username, badgeCount, points) {
   const message = `${username} has ${badgeCount} total badge(s) and ${points} points in JavaScript.`;
   console.log(message);
@@ -15,16 +20,21 @@ try {
                   body += data.toString();
                 });
 
-                response.on('end', () => {
-                  const profile = JSON.parse(body);
-                  printMessage(username, profile.badges.length, profile.points.JavaScript);
+                response.on('end', ()  => {
+                  try {
+                    const profile = JSON.parse(body);
+                    printMessage(username, profile.badges.length, profile.points.JavaScript);
+                  } catch (error) {
+                    printError(error);
+                  }
                 });
 
              });
-    request.on('error', error => console.error(`Problem with request: ${error.message}`));
-  } catch (error) {
-    console.error(error.message);
-  }
+
+            request.on('error', /*error => console.error(`Problem with request: ${error.message}`*/ printError);
+          } catch (error) {
+            printError(error);
+          }
 }
 
 //console.log(process.argv);
@@ -37,7 +47,9 @@ users.forEach(getProfile);
 //   getProfile(username);
 // });
 
-// Steps
+
+
+// Steps for an API
 //   1. require 'https'
 //   2. write a printMessage function with parameters you want in your string output.
 //   3. in printMessage: const message + console.log(); to see if it works.
@@ -51,3 +63,8 @@ users.forEach(getProfile);
 //9. make an array of users const users = ['1', '2']; then write a users.forEach(getProfile); loop to go through each.
 //10. use process.argv to allow you to pass usernames in through the console= console.log(process.argv)
 //11. replace your user array with process.argv= const users = process.argv.slice(2); (2 because the first to array points in process are node files that you wont need.)
+/////ERRORS
+//1. request.on('error', error => { console.error(put a message HERE!);});
+//2. enclose the const request object in a try {} catch (error) {console.error(`backtick interp+ ${console.message}`)}
+//3. enclose the response.on('end') in a try {} catch (error) {console.error(`backtick interp+ ${console.message}`)}
+//4. place a printError function at the top of the javascript and replace all the error.messages with printError();
