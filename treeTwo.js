@@ -23,7 +23,8 @@ const request = https.get(`https://teamtreehouse.com/${username}.json`, response
              });
 }
 
-const users = ['kylelange','chalkers'];
+//console.log(process.argv);
+const users = process.argv.slice(2);
 
 users.forEach(getProfile);
 
@@ -43,3 +44,6 @@ users.forEach(getProfile);
 //* console.log(typeof body) will tell you what type of data you are recieving from your API: srting or object, for ex.
 //7. response.on('end', () => {console.log(body);});
 //8. Parse the string to turn it into a JSON object in the 'end' response= const profile = JSON.parse(body); then call printMessage(username,profile.badges.length,profile.etc...)
+//9. make an array of users const users = ['1', '2']; then write a users.forEach(getProfile); loop to go through each.
+//10. use process.argv to allow you to pass usernames in through the console= console.log(process.argv)
+//11. replace your user array with process.argv= const users = process.argv.slice(2); (2 because the first to array points in process are node files that you wont need.)
