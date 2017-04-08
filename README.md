@@ -9,7 +9,13 @@
 
 ## Learnings
 
-*
+* learn to use response.on data.toString to make object response a string to print.
+
+* learned process.argv function to input names in the console to give the user a custom response to her/his inputs
+
+* learned to alert for parsing errors
+
+* learned to write try.catch error msgs.
 
 
 ## Setup/Installation Requirements

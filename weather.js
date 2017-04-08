@@ -15,7 +15,7 @@ function printWeather (city, weatherType, temp) {
 };
 
 function getWeather(zipCode) {
-  const request = http.get(`http://api.wunderground.com/api/663c1433467f5b7f/conditions/q/${zipCode}.json`, response => {
+  const request = http.get(`http://api.wunderground.com/api/${api.key}/conditions/q/${zipCode}.json`, response => {
 
     let body = '';
 
