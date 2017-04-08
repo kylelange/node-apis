@@ -2,12 +2,14 @@ const http = require('http');
 const https = require('https');
 const api = require('./api.json');
 
-//const zipCode = '97201';
 
 //seed printWeather data
+//const zipCode = '97201';
 //const weatherType = 'sunny, (I wish...)';
 //const temp = 60;
 //const city = Portland;
+
+console.log('Hello! Enter a zipcode or City_ST string to get your weather. Example: $ node weather.js 97201');
 
 function printWeather (city, weatherType, temp) {
   const message = `The weather in ${city} is ${weatherType} and ${temp} degrees F.`
@@ -31,7 +33,7 @@ function getWeather(zipCode) {
 }
 
 
-const zipCodes = process.argv.slice(2)
+const zipCodes = process.argv.slice(2);
 zipCodes.forEach(getWeather);
 
 //const ??? = process.argv
