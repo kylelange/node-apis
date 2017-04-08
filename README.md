@@ -9,16 +9,16 @@
 
 ## Learnings
 
-* ES6 destructureing an array example: [var1, var2] = [value1, value2]
+*
 
 
 ## Setup/Installation Requirements
 
-1. Download this repo using your terminal: git clone repo-name pasted here
+1. Download this repo using your terminal:
 
-2. View the code by drag-and-dropping the file into your [favorite text editor](https://atom.io)
+    git clone repo-name pasted here
 
-3. run/check-out the program by dropping the index/html file from your folder into your web browser
+
 
 ## Known Bugs
 
@@ -30,8 +30,7 @@ For questions or comments, please __email  [Kyle here.](baronsintrees@gmail.com)
 
 ## Technologies Used
 
-* HTML5
-* JavaScript
+* Node.js
 
 ### License
 
