@@ -11,4 +11,6 @@ function printWeather (zipcode, weatherType, temp) {
    console.log(message);
 };
 
-printWeather(zipCode, weatherType, temp);
+const request = http.get(`http://api.wunderground.com/api/663c1433467f5b7f/conditions/q/${zipCode}.json`, response => {
+  console.dir(response.statusCode);
+});
