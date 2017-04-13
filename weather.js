@@ -17,19 +17,25 @@ function printWeather (city, weatherType, temp) {
 };
 
 function getWeather(zipCode) {
-  const request = http.get(`http://api.wunderground.com/api/${api.key}/conditions/q/${zipCode}.json`, response => {
+  try {
+    //request.on(error) is for async errors (url mistyped)
+    const request = http.get(`http://api.wunderground.com/api/${api.key}/conditions/q/${zipCode}.json`, response => {
 
-    let body = '';
+      let body = '';
 
-    response.on ('data', data => {
-      body += data.toString();
+      response.on ('data', data => {
+        body += data.toString();
+      });
+
+      response.on ('end', () => {
+        const place = JSON.parse(body);
+        printWeather( place.current_observation.display_location.full, place.current_observation.weather.toLowerCase(), place.current_observation.temp_f);
+      })
     });
-
-    response.on ('end', () => {
-      const place = JSON.parse(body);
-      printWeather( place.current_observation.display_location.full, place.current_observation.weather.toLowerCase(), place.current_observation.temp_f);
-    })
-  });
+    request.on('error', error => console.error(`There was a problem with your request: ${error.message}`));
+  } catch (error) {
+    console.error(error.message);
+  }
 }
 
 
