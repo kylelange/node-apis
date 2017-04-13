@@ -11,6 +11,11 @@ const api = require('./api.json');
 
 console.log('Hello! Enter a zipcode or City_ST string to get your weather. Example: $ node weather.js 97201');
 
+//this makes a common function to use for all later instances of error.message:
+function printError (error) {
+  console.error(error.message);
+}
+
 function printWeather (city, weatherType, temp) {
   const message = `The weather in ${city} is ${weatherType} and ${temp} degrees F.`
    console.log(message);
@@ -28,13 +33,18 @@ function getWeather(zipCode) {
       });
 
       response.on ('end', () => {
-        const place = JSON.parse(body);
-        printWeather( place.current_observation.display_location.full, place.current_observation.weather.toLowerCase(), place.current_observation.temp_f);
-      })
+        //try+catch block here is for parsing errors
+        try {
+          const place = JSON.parse(body);
+          printWeather( place.current_observation.display_location.full, place.current_observation.weather.toLowerCase(), place.current_observation.temp_f);
+        } catch (error) {
+          console.error(`Sorry, we couldn't find that place or zip code: ${error.message}`);
+        }
+      });
     });
     request.on('error', error => console.error(`There was a problem with your request: ${error.message}`));
   } catch (error) {
-    console.error(error.message);
+    printError(error);
   }
 }
 
