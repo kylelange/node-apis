@@ -25,22 +25,27 @@ function getWeather(zipCode) {
   try {
     //request.on(error) is for async errors (url mistyped)
     const request = http.get(`http://api.wunderground.com/api/${api.key}/conditions/q/${zipCode}.json`, response => {
+      if (response.statusCode === 200) {
+        let body = '';
 
-      let body = '';
+        response.on ('data', data => {
+          body += data.toString();
+        });
 
-      response.on ('data', data => {
-        body += data.toString();
-      });
-
-      response.on ('end', () => {
-        //try+catch block here is for parsing errors
-        try {
-          const place = JSON.parse(body);
-          printWeather( place.current_observation.display_location.full, place.current_observation.weather.toLowerCase(), place.current_observation.temp_f);
-        } catch (error) {
-          console.error(`Sorry, we couldn't find that place or zip code: ${error.message}`);
-        }
-      });
+        response.on ('end', () => {
+          //try+catch block here is for parsing errors
+          try {
+            const place = JSON.parse(body);
+            printWeather( place.current_observation.display_location.full, place.current_observation.weather.toLowerCase(), place.current_observation.temp_f);
+          } catch (error) {
+            console.error(`Sorry, we couldn't find that place or zip code. Error: ${error.meessage}`);
+          }
+        });
+      } else {
+        const message = `There was an error getting the profile for ${username}: (${http.STATUS_CODE[response.statusCode]}).`;
+        const statusCodeError = new Error(message);
+        printError(statusCodeError);
+      }
     });
     request.on('error', error => console.error(`There was a problem with your request: ${error.message}`));
   } catch (error) {

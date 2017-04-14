@@ -4,7 +4,7 @@
 
 #### By _**Kyle Lange**_
 
-![screenshot](Screen Shot.png)
+![screenshot](nodeAPI-screenshot.png)
 
 
 ## Learnings
@@ -17,13 +17,22 @@
 
 * learned to write try.catch error msgs.
 
+* learned to account for and translate status codes for the user.
+
 
 ## Setup/Installation Requirements
 
 1. Download this repo using your terminal:
 
-    git clone repo-name pasted here
+    git clone node-apis
 
+    cd node-apis
+
+2. Run one of these terminal-based applications:
+
+    type node file-name.js *write the info you are searching for here*
+
+    Ex: node weather.js Portland_OR
 
 
 ## Known Bugs
